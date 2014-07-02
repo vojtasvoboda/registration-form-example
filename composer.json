@@ -1,0 +1,15 @@
+{
+    "name": "VojtaSvoboda/registration-example",
+    "description": "Example of registration form",
+    "authors": [
+        {
+            "name": "Vojta Svoboda",
+            "email": "vojtasvoboda.cz@gmail.com"
+        }
+    ],
+    "require": {
+        "tracy/tracy": "2.2.*",
+        "dibi/dibi": "2.2.*",
+        "nette/forms": "2.2.*"
+    }
+}
