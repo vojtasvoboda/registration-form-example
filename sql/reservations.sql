@@ -8,3 +8,5 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `ip` varchar(255) COLLATE utf8_czech_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci AUTO_INCREMENT=1 ;
+
+ALTER TABLE `reservations` ADD UNIQUE(`email`);

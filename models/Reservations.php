@@ -77,12 +77,19 @@ class Reservations {
      * Create new reservation
      *
      * @param $data
+     *
+     * @return DibiResult|int result set object (if any)
      */
     public function create($data) {
         $data['created%sql'] = 'NOW()';
         $data['ip'] = $_SERVER['REMOTE_ADDR'];
         unset($data['terms']);
-        $this->db->query('INSERT INTO ' . $this->table, $data);
+        $result = $this->db->query('INSERT INTO ' . $this->table, $data);
+        // if everything is ok, send e-mail
+        if ($result) {
+            $this->sendConfirmationEmail($data['email'], $data['date'], $data['time']);
+        }
+        return $result;
     }
 
     /**
@@ -159,6 +166,24 @@ class Reservations {
      */
     private function getMaxTimesCombination() {
         return count($this->dates) * self::MAX_PERSON_PER_TERM;
+    }
+
+    /**
+     * Send confirmation e-mail
+     *
+     * @param $email
+     * @param $date
+     * @param $time
+     */
+    public function sendConfirmationEmail($email, $date, $time) {
+        $title = 'Potvrzení o rezervaci LG G3 na KVIFF';
+        $text = "Text potvrzení. Instrukce pro vyzvednutí telefonu $date v $time." . "\n";
+        $headers = "MIME-Versin: 1.0\r\n" .
+            "Content-type: text/plain; charset=utf-8; format=flowed\r\n" .
+            "Content-Transfer-Encoding: 8bit\r\n" .
+            "From: no-reply@lg.cz";
+        $subject = "=?utf-8?B?".base64_encode($title)."?=";
+        mail($email, $subject, $text, $headers);
     }
 
 }
