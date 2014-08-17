@@ -9,15 +9,19 @@ require 'models/Reservations.php';
 // enable debugger
 Tracy\Debugger::enable();
 
+// reservations management
+$connection = new Connection();
+$reservations = new Reservations($connection);
+
+// získáme volné datumy a časy
+$dates = $reservations->getDates();
+$times = $reservations->getTimes();
+
 // create registration form
-$form = new RegistrationForm();
+$form = new RegistrationForm($dates, $times);
 
 // form sent and valid
 if ($form->isSuccess()) {
-
-    // reservations management
-    $connection = new Connection();
-    $reservations = new Reservations($connection);
 
     // form values
     $values = $form->getValues();
