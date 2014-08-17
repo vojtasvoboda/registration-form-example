@@ -1,6 +1,7 @@
 <?php
 
-require 'vendor/autoload.php';
+    require 'vendor/autoload.php';
+    require 'forms/RegistrationForm.php';
 
 ?>
 <!doctype html>
@@ -17,7 +18,7 @@ require 'vendor/autoload.php';
     <script src="vendor/nette/forms/src/assets/netteForms.js"></script>
 
     <style>
-        .required label { color: maroon }
+        th { text-align: right; }
     </style>
 
 </head>
@@ -25,13 +26,8 @@ require 'vendor/autoload.php';
 
 <?php
 
-use Nette\Forms\Form;
-
-$form = new Form;
-
-$form->addText('name', 'Name:');
-$form->addPassword('password', 'Password:');
-$form->addSubmit('send', 'Register');
+// create registration form
+$form = new RegistrationForm();
 
 // renders the form
 echo $form;
