@@ -15,7 +15,7 @@
     <meta name="copyright" content="" />
     <meta name="language" content="cs" />
 
-    <script src="vendor/nette/forms/src/assets/netteForms.js"></script>
+    <!-- <script src="js/netteForms.js"></script> -->
 
     <style>
         th { text-align: right; }
