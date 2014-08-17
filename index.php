@@ -1,15 +1,19 @@
 <?php
 
-// load all classes
+// load Composer classes
 require 'vendor/autoload.php';
-require 'forms/RegistrationForm.php';
-require 'models/Connection.php';
-require 'models/Reservations.php';
 
 // enable debugger
 Tracy\Debugger::enable();
 Tracy\Debugger::$email = 'vojtasvoboda.cz@gmail.com';
 Tracy\Debugger::$logDirectory = '/log';
+
+// enable robot loader
+$loader = new Nette\Loaders\RobotLoader;
+$loader->addDirectory('forms');
+$loader->addDirectory('models');
+$loader->setCacheStorage(new Nette\Caching\Storages\FileStorage('temp'));
+$loader->register();
 
 // reservations management
 $connection = new Connection();
