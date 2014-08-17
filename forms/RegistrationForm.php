@@ -34,7 +34,9 @@ class RegistrationForm extends Form {
 
         // inputs for name and e-mail
         $this->addText('name', 'Jméno:')->setRequired('Zadejte prosím jméno');
-        $this->addText('email', 'E-mail:')->setRequired('Zadejte prosím e-mail');
+        $this->addText('email', 'E-mail:')
+            ->setRequired('Zadejte prosím e-mail')
+            ->addRule(Form::EMAIL, 'E-mail musí být ve formátu jmeno@domena.cz');
 
         // checkbox for contest terms
         $checkboxLabel = Html::el();

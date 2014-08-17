@@ -1,5 +1,6 @@
 <?php
 
+// load all classes
 require 'vendor/autoload.php';
 require 'forms/RegistrationForm.php';
 require 'models/Connection.php';
@@ -11,15 +12,28 @@ Tracy\Debugger::enable();
 // create registration form
 $form = new RegistrationForm();
 
-// form sent
-if ($form->isSubmitted()) {
+// form sent and valid
+if ($form->isSuccess()) {
 
-    // reservations
+    // reservations management
     $connection = new Connection();
     $reservations = new Reservations($connection);
 
-    // if is form valid
-    if ( $form->isValid() ) {
+    // form values
+    $values = $form->getValues();
+
+    // check e-mail
+    if (!$reservations->checkEmail($values->email)) {
+        $form->addError('Na tento e-mail je již provedena rezervace.');
+    }
+
+    // check date and time
+    if (!$reservations->isFree($values->date, $values->time)) {
+        $form->addError('Tato hodina je již obsazena, zkuste vybrat jinou.');
+    }
+
+    // if is form still valid
+    if ($form->isValid()) {
 
         // then save reservation
         $reservations->create($form->getValues());

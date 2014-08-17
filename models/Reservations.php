@@ -5,6 +5,9 @@
  */
 class Reservations {
 
+    /** max amout of reservations for one term (one time within one date) */
+    const MAX_PERSON_PER_TERM = 2;
+
     /** @var \Connection $db */
     private $db;
 
@@ -29,8 +32,8 @@ class Reservations {
      * @return bool
      */
     public function checkEmail($email) {
-        $exists = $this->db->query('SELECT email FROM ' . $this->table . ' WHERE email = ?', $email)->count();
-        return $exists;
+        $exists = $this->db->query('SELECT id FROM ' . $this->table . ' WHERE email = ?', $email)->count();
+        return $exists == 0;
     }
 
     /**
@@ -42,8 +45,8 @@ class Reservations {
      * @return bool
      */
     public function isFree($date, $time) {
-        $exists = $this->db->query('SELECT date FROM ' . $this->table . ' WHERE date = ? AND time = ?', $date, $time)->count();
-        return $exists;
+        $count = $this->db->query('SELECT id FROM ' . $this->table . ' WHERE date = ? AND time = ?', $date, $time)->count();
+        return $count < self::MAX_PERSON_PER_TERM;
     }
 
     /**
