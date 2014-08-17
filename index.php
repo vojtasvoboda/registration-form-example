@@ -53,7 +53,7 @@ if ( !empty($dates) && !empty($times) ) {
 
             // redirect
             header("HTTP/1.1 303 See Other");
-            header("Location: /?done=1");
+            header("Location: ?done=1");
             exit;
 
         }
