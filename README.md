@@ -3,6 +3,8 @@ Registration form example
 
 Quick registration form in PHP. Server and client validation. Write credentials to database. Sends confirmation e-mail.
 
+Related blog post in czech: [http://blog.vojtasvoboda.cz/registracni-formular-v-nette](http://blog.vojtasvoboda.cz/registracni-formular-v-nette)
+
 Used components:
 
 - [nette/forms](https://github.com/nette/forms) - forms
@@ -13,13 +15,11 @@ Used components:
 Installation
 ------------
 
-1. Download repository or pull it:
+1. Download repository or pull it. Folder need to be accesible by your web server.
 
 ```
 git pull git@github.com:vojtasvoboda/registration-form-example.git
 ```
-
-Folder need to be accesible by your web server.
 
 2. Run composer:
 
