@@ -6,7 +6,7 @@
 class Reservations {
 
     /** max amout of reservations for one term (one time within one date) */
-    const MAX_PERSON_PER_TERM = 2;
+    const MAX_PERSON_PER_TERM = 10;
 
     /** @var \Connection $db */
     private $db;

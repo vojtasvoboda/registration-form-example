@@ -12,13 +12,18 @@
     <script src="js/netteForms.js"></script>
 
     <style>
+        .error { color: red; }
         th { text-align: right; }
     </style>
 
 </head>
 <body>
 
-<?=$form;?>
+<?php if (isset($form)) { ?>
+    <?=$form;?>
+<?php } else { ?>
+    <p>All terms are full.</p>
+<?php } ?>
 
 </body>
 </html>

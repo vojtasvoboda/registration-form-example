@@ -17,31 +17,40 @@ $reservations = new Reservations($connection);
 $dates = $reservations->getDates();
 $times = $reservations->getTimes();
 
-// create registration form
-$form = new RegistrationForm($dates, $times);
+// if we have available dates and times
+if ( !empty($dates) && !empty($times) ) {
 
-// form sent and valid
-if ($form->isSuccess()) {
+    // create registration form
+    $form = new RegistrationForm($dates, $times);
 
-    // form values
-    $values = $form->getValues();
+    // form sent and valid
+    if ($form->isSuccess()) {
 
-    // check e-mail
-    if (!$reservations->checkEmail($values->email)) {
-        $form->addError('Na tento e-mail je již provedena rezervace.');
-    }
+        // form values
+        $values = $form->getValues();
 
-    // check date and time
-    if (!$reservations->isFree($values->date, $values->time)) {
-        $form->addError('Tato hodina je již obsazena, zkuste vybrat jinou.');
-    }
+        // check e-mail
+        if (!$reservations->checkEmail($values->email)) {
+            $form->addError('Na tento e-mail je již provedena rezervace.');
+        }
 
-    // if is form still valid
-    if ($form->isValid()) {
+        // check date and time
+        if (!$reservations->isFree($values->date, $values->time)) {
+            $form->addError('Tato hodina je již obsazena, zkuste vybrat jinou.');
+        }
 
-        // then save reservation
-        $reservations->create($form->getValues());
-        echo "Saved!";
+        // if is form still valid
+        if ($form->isValid()) {
+
+            // then save reservation
+            $reservations->create($form->getValues());
+
+            // redirect
+            header("HTTP/1.1 303 See Other");
+            header("Location: /?done=1");
+            exit;
+
+        }
 
     }
 
