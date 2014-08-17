@@ -1,35 +1,12 @@
 <?php
 
-    require 'vendor/autoload.php';
-    require 'forms/RegistrationForm.php';
-    require 'models/Connection.php';
-    require 'models/Reservations.php';
+require 'vendor/autoload.php';
+require 'forms/RegistrationForm.php';
+require 'models/Connection.php';
+require 'models/Reservations.php';
 
-    // enable debugger
-    Tracy\Debugger::enable();
-
-?>
-<!doctype html>
-<html lang="cs">
-
-<head>
-    <meta charset="utf-8">
-    <title>Reservation form</title>
-
-    <meta name="description" content="" />
-    <meta name="copyright" content="" />
-    <meta name="language" content="cs" />
-
-    <script src="js/netteForms.js"></script>
-
-    <style>
-        th { text-align: right; }
-    </style>
-
-</head>
-<body>
-
-<?php
+// enable debugger
+Tracy\Debugger::enable();
 
 // create registration form
 $form = new RegistrationForm();
@@ -52,10 +29,5 @@ if ($form->isSubmitted()) {
 
 }
 
-// renders the form
-echo $form;
-
-?>
-
-</body>
-</html>
+// load template
+include_once 'templates/index.php';
