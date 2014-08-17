@@ -8,6 +8,8 @@ require 'models/Reservations.php';
 
 // enable debugger
 Tracy\Debugger::enable();
+Tracy\Debugger::$email = 'vojtasvoboda.cz@gmail.com';
+Tracy\Debugger::$logDirectory = '/log';
 
 // reservations management
 $connection = new Connection();
