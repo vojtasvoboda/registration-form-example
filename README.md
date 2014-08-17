@@ -15,20 +15,20 @@ Used components:
 Installation
 ------------
 
-1. Download repository or pull it. Folder need to be accesible by your web server.
+- Download repository or pull it. Folder need to be accesible by your web server.
 
 ```
 git pull git@github.com:vojtasvoboda/registration-form-example.git
 ```
 
-2. Run composer:
+- Run composer:
 
 ```
 composer install
 ```
 
-3. Make /temp folder writable
+- Make /temp folder writable
 
-4. Create database with /sql/reservation.sql dump. Database details can be modified in models/Connection.php.
+- Create database with /sql/reservation.sql dump. Database details can be modified in models/Connection.php.
 
-5. Open your folder through web server, e.g. http://localhost/registration-form-example/
+- Open your folder through web server, e.g. http://localhost/registration-form-example/
