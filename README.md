@@ -1,7 +1,7 @@
 Registration form example
 =========================
 
-Quick registration form in PHP. Server and client validation. Write credentials to database. Sends confirmation e-mail.
+Quick registration form in PHP. Server and client-side validation. Saving registration to database. Sends confirmation e-mail.
 
 Related blog post in czech: [http://blog.vojtasvoboda.cz/registracni-formular-v-nette](http://blog.vojtasvoboda.cz/registracni-formular-v-nette)
 
